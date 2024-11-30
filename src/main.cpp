@@ -23,7 +23,7 @@ int main() {
 
     int lastInput;
     while (lastInput != 0) {
-        cout << "Digite o número sorteado ou 0 para sair" << endl;
+        cout << "Digite o numero sorteado ou 0 para sair" << endl;
         cin >> lastInput;
         if (lastInput == 0)
             break;
