@@ -57,7 +57,7 @@ bool validaRandNumber(CARTELA *cartela, int coluna, int randNumber){
 
 void adicionarFreeSpace(CARTELA *cartela){
     cartela->matriz[2][2].valor = 0;
-    cartela->matriz[2][2].valor = true;
+    cartela->matriz[2][2].marcado = true;
 }
 
 void marcarNumero(CARTELA *cartela, int number){
@@ -111,7 +111,7 @@ void avisoBater(CARTELA *cartela){
 };
 
 bool verificaColuna(CARTELA *cartela){
-    int coluna,linha, okQntd;
+    int coluna,linha, okQntd= 0 ;
     //Verificar coluna
     if(cartela->colunaOK == true){
         return true;
@@ -131,7 +131,7 @@ bool verificaColuna(CARTELA *cartela){
 };
 
 bool verificaLinha(CARTELA *cartela){
-    int coluna,linha, okQntd;
+    int coluna,linha, okQntd= 0;
     //Verificar coluna
     if (cartela->linhaOK == true){
         return true;
@@ -155,7 +155,7 @@ bool verificaBoa(CARTELA *cartela){
     if (cartela->boaOK == true){
         return true;
     }
-    int coluna,linha, okQntd;
+    int coluna,linha, okQntd= 0;
     for ( coluna = 0; coluna < 5; coluna++){
         for( linha = 0; linha < 5; linha++){
             if(cartela->matriz[coluna][linha].marcado == true){
@@ -173,7 +173,7 @@ bool verificaBingo(CARTELA *cartela){
     if (cartela->bingoOK == true){
         return true;
     }
-    int coluna,linha, okQntd;
+    int coluna,linha, okQntd= 0;
     for ( coluna = 0; coluna < 5; coluna++){
         for( linha = 0; linha < 5; linha++){
             if(cartela->matriz[coluna][linha].marcado == true){
