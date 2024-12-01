@@ -17,8 +17,8 @@ int main() {
     bool linha = false;
 
     int qntd = 0;
-    cout << "Olá, seja bem vindo ao gerenciador de cartelas." << endl;
-    cout << "Para poder começar, responda. " << endl;
+    cout << "Ola, seja bem vindo ao gerenciador de cartelas." << endl;
+    cout << "Para poder comecar, responda. " << endl;
     cout << "Quantas cartelas deseja gerenciar?" << endl;
     
     cin >> qntd;
