@@ -2,7 +2,7 @@
 
 ## Descrição
 
-**Olha a Boa** é um projeto desenvolvido como parte de um desafio proposto pelo professor Orlando Saraiva Junior. O objetivo deste projeto é colocar em prática os conceitos e conhecimentos adquiridos durante o curso de Estruturas de Dados. Através deste desafio, exploramos tópicos fundamentais como:
+**[Olha a Boa](https://github.com/orlandosaraivajr/FATEC_2024_2SEM_ED/blob/main/Projeto.pdf)** é um projeto desenvolvido como parte de um desafio proposto pelo professor [Orlando Saraiva Junior](https://github.com/orlandosaraivajr). O objetivo deste projeto é colocar em prática os conceitos e conhecimentos adquiridos durante o curso de Estruturas de Dados. Através deste desafio, exploramos tópicos fundamentais como:
 
 - **Ponteiros**
 - **Fila**
