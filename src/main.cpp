@@ -22,7 +22,7 @@ int main() {
     cout << "Quantas cartelas deseja gerenciar?" << endl;
     
     cin >> qntd;
-    CARTELA* vetor_cartela = new CARTELA[qntd];
+    CARTELA vetor_cartela[qntd];
 
      for (int i = 0; i < qntd; i++){
         gerarCartela(&vetor_cartela[i]);
