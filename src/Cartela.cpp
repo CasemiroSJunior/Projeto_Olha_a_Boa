@@ -25,7 +25,7 @@ bool verificaLinha(CARTELA *cartela, bool verificaLinha);
 bool verificaBoa(CARTELA *cartela);
 bool verificaBingo(CARTELA *cartela);
 void visualizarCartela(CARTELA *cartela);
-void converteCartelaTXT(CARTELA *cartela);
+void converteCartelaTXT(CARTELA *cartela, int index);
 
 void gerarCartela(CARTELA *cartela){
     int i, j;
@@ -186,22 +186,24 @@ bool verificaBoa(CARTELA *cartela){
     }
 }
 
-bool verificaBingo(CARTELA *cartela){
-    int coluna,linha, okQntd= 0;
-    for ( coluna = 0; coluna < 5; coluna++){
-        for( linha = 0; linha < 5; linha++){
-            if(cartela->matriz[coluna][linha].marcado == true){
+bool verificaBingo(CARTELA *cartela) {
+    int okQntd = 0;
+
+    for (int linha = 0; linha < 5; linha++) {
+        for (int coluna = 0; coluna < 5; coluna++) {
+            if (cartela->matriz[linha][coluna].marcado) {
                 okQntd++;
-            }
-            if(okQntd == 25){
-                cout << "----------BINGO!----------"<< endl;
-                return true;
             }
         }
     }
+    // Verificar se todos os 25 espaços estão marcados
+    if (okQntd == 25) {
+        cout << "----------BINGO!----------" << endl;
+        return true;
+    }
+
+    return false;
 }
-
-
 
 void visualizarCartela(CARTELA *cartela){
 
