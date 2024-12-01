@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <string>
 using namespace std;
 
 typedef struct valores{
@@ -10,10 +11,7 @@ typedef struct valores{
 typedef struct cartela{
     VALORES matriz[5][5];
     // Trocar lugar da variavel para chamador validar se saiu ou n 
-    bool linhaOK = false;
-    bool colunaOK = false;
     bool boaOK = false;
-    bool bingoOK = false;
 } CARTELA;
 
 void gerarCartela(CARTELA *cartela);
@@ -22,12 +20,12 @@ void adicionarFreeSpace(CARTELA *cartela);
 void marcarNumero(CARTELA *cartela, int number);
 int gerarRandNumber(int coluna);
 void avisoBater(CARTELA *cartela);
-bool verificaColuna(CARTELA *cartela);
-bool verificaLinha(CARTELA *cartela);
+bool verificaColuna(CARTELA *cartela, bool verificaColuna);
+bool verificaLinha(CARTELA *cartela, bool verificaLinha);
 bool verificaBoa(CARTELA *cartela);
 bool verificaBingo(CARTELA *cartela);
 void visualizarCartela(CARTELA *cartela);
-
+void converteCartelaTXT(CARTELA *cartela);
 
 void gerarCartela(CARTELA *cartela){
     int i, j;
@@ -44,6 +42,30 @@ void gerarCartela(CARTELA *cartela){
         }
     }
     adicionarFreeSpace(cartela);
+};
+
+void converteCartelaTXT(CARTELA *cartela, int index){
+    
+    string archiveName = "Cartela" + to_string(index)+".txt";
+    ofstream outFile(archiveName);
+    if (!outFile.is_open()){
+        cout << "Erro ao abrir arquivo" << endl;
+        return ;
+    }
+    
+    outFile << " B   I   N   G   O \n";
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (i == 2 && j == 2) {
+                outFile << "XX  ";  
+            }else {
+                outFile << cartela->matriz[j][i].valor << "  ";
+            }
+        }
+        outFile << "\n";
+        
+    }
+    outFile.close();
 };
 
 bool validaRandNumber(CARTELA *cartela, int coluna, int randNumber){
@@ -72,22 +94,27 @@ void marcarNumero(CARTELA *cartela, int number){
 
 int gerarRandNumber(int coluna){
     int max, min;
-    switch (coluna){}
-    if (coluna == 0){
-        max = 15;
-        min = 1;
-    }else if (coluna == 1){
-        max = 30;
-        min = 16;
-    }else if (coluna == 2){
-        max = 45;
-        min = 31;
-    }else if (coluna == 3){
-        max = 60;
-        min = 46;
-    }else if (coluna == 4){
-        max = 75;
-        min = 61;
+    switch (coluna){
+        case 0:
+            min = 1;
+            max = 15;
+            break;
+        case 1:
+            min = 16;
+            max = 30;
+            break;
+        case 2:
+            min = 31;
+            max = 45;
+            break;
+        case 3:
+            min = 46;
+            max = 60;
+            break;
+        case 4:
+            min = 61;
+            max = 75;
+            break;
     }
 
     int random_number = min + rand() % (max - min + 1);
@@ -95,25 +122,15 @@ int gerarRandNumber(int coluna){
 };
 
 void avisoBater(CARTELA *cartela){
-    if(verificaColuna(cartela)){
-        cartela->colunaOK = true;
-    }
-    if(verificaLinha(cartela)){
-        cartela->linhaOK = true;
-    }
     if(verificaBoa(cartela)){
         cartela->boaOK = true;
     }
-    if(verificaBingo(cartela)){
-        cartela->bingoOK = true;
-    }
-    
 };
 
-bool verificaColuna(CARTELA *cartela){
+bool verificaColuna(CARTELA *cartela, bool verificaColuna){
     int coluna,linha, okQntd= 0 ;
     //Verificar coluna
-    if(cartela->colunaOK == true){
+    if (verificaColuna == true){
         return true;
     }
     for ( coluna = 0; coluna < 5; coluna++){
@@ -130,10 +147,10 @@ bool verificaColuna(CARTELA *cartela){
     }
 };
 
-bool verificaLinha(CARTELA *cartela){
+bool verificaLinha(CARTELA *cartela, bool verificaLinha){
     int coluna,linha, okQntd= 0;
-    //Verificar coluna
-    if (cartela->linhaOK == true){
+    //Verificar linha
+    if (verificaLinha == true){
         return true;
     }
     for ( coluna = 0; coluna < 5; coluna++){
@@ -170,9 +187,6 @@ bool verificaBoa(CARTELA *cartela){
 }
 
 bool verificaBingo(CARTELA *cartela){
-    if (cartela->bingoOK == true){
-        return true;
-    }
     int coluna,linha, okQntd= 0;
     for ( coluna = 0; coluna < 5; coluna++){
         for( linha = 0; linha < 5; linha++){
