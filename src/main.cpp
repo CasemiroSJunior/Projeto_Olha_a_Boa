@@ -18,11 +18,16 @@ int main()
     bool linha = false;
 
     int qntd = 0;
-    cout << "Ola, seja bem vindo ao gerenciador de cartelas." << endl;
-    cout << "Para poder comecar, responda. " << endl;
-    cout << "Quantas cartelas deseja gerenciar?" << endl;
+    while (qntd <= 0)
+    {
+        cout << "Ola, seja bem vindo ao gerenciador de cartelas." << endl;
+        cout << "Para poder comecar, responda. " << endl;
+        cout << "Quantas cartelas deseja gerenciar?" << endl;
 
-    cin >> qntd;
+        cin >> qntd;
+    }
+    
+    
     CARTELA vetor_cartela[qntd];
 
     for (int i = 0; i < qntd; i++)
